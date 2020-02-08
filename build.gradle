@@ -1,0 +1,57 @@
+buildscript {
+    repositories {
+        mavenLocal()
+        mavenCentral()
+    }
+    ext {
+        springVersion = "5.2.3.RELEASE"
+        springSecurityVersion = "5.2.2.RELEASE"
+        springBootVersion = "2.2.4.RELEASE"
+        jjwtVersion = "0.11.0"
+    }
+}
+
+plugins {
+    id 'java-library'
+}
+
+group = 'net.pechorina.config'
+version = '1.0.0'
+description = ''
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+}
+
+dependencies {
+    testCompile group: 'org.springframework.boot', name: 'spring-boot-starter', version: springBootVersion
+    testCompile group: 'org.springframework.boot', name: 'spring-boot-starter-web', version: springBootVersion
+    testCompile (group: 'org.springframework.boot', name: 'spring-boot-starter-test', version: springBootVersion) {
+        exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+    }
+    testImplementation group: 'io.rest-assured', name: 'rest-assured', version: '4.2.0'
+    testRuntime group: 'io.jsonwebtoken', name: 'jjwt-impl', version: jjwtVersion
+
+    implementation group: 'org.springframework', name: 'spring-context', version: springVersion
+    implementation group: 'org.springframework', name: 'spring-webmvc', version: springVersion
+    implementation group: 'org.springframework', name: 'spring-web', version: springVersion
+    implementation group: 'org.springframework.security', name: 'spring-security-core', version: springSecurityVersion
+    implementation group: 'org.springframework.security', name: 'spring-security-config', version: springSecurityVersion
+    implementation group: 'org.springframework.security', name: 'spring-security-web', version: springSecurityVersion
+    implementation 'org.slf4j:slf4j-api:1.7.21'
+    compile group: 'io.jsonwebtoken', name: 'jjwt-api', version: jjwtVersion
+    runtime group: 'io.jsonwebtoken', name: 'jjwt-impl', version: jjwtVersion
+    runtime group: 'io.jsonwebtoken', name: 'jjwt-jackson', version: jjwtVersion
+    api group: 'javax.servlet', name: 'javax.servlet-api', version: '4.0.1'
+    implementation group: 'commons-codec', name: 'commons-codec', version: '1.14'
+}
+
+test {
+    useJUnitPlatform()
+    reports.html.destination = file("$reports.html.destination/unit")
+    reports.junitXml.destination = file("$reports.junitXml.destination/unit")
+}

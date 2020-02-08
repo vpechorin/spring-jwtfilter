@@ -1,0 +1,13 @@
+security:
+  authentication:
+    jwt:
+      systemId: test1
+      secret: aXa9LSXITQyskG4xR6xLpWjDv5zg7z8rKdUkWNei
+
+logging:
+  level:
+    org.springframework.web: INFO
+    org.springframework.security: DEBUG
+    org.apache.http: WARN
+    org.apache.http.headers: WARN
+    net.pechorina.config: DEBUG
